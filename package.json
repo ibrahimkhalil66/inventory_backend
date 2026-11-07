@@ -1,0 +1,21 @@
+{
+  "name": "inventory_app",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "ibrahim",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "database": "node ./db/populatedb.js",
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "ejs": "^7.0.2",
+    "express": "^5.3.0",
+    "pg": "^8.23.1",
+    "psql": "^0.0.1"
+  }
+}
