@@ -56,16 +56,20 @@ async function postNewItem(req, res) {
 
 async function deleteItem(req, res) {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
 
     if (!id) throw new Error();
 
-    const result = await db.deleteItem(id);
+    await db.deleteItem(id);
 
-    res.send(result);
+    res.redirect("/inventory/items");
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }
+}
+
+async function editItemPage(req,res) {
+   res.render("edit.ejs");
 }
 
 async function editItem(req, res) {
@@ -89,4 +93,5 @@ module.exports = {
   postNewItem,
   deleteItem,
   editItem,
+  editItemPage
 };

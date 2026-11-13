@@ -11,15 +11,16 @@ inventoryRouter.get("/items", itemsController.getAllItems);
 inventoryRouter.get("/item/search", itemsController.getItemById);
 inventoryRouter.get("/newItem", itemsController.newItem);
 inventoryRouter.post("/newItem", itemsController.postNewItem);
-inventoryRouter.delete("/item/delete/:id", itemsController.deleteItem);
-inventoryRouter.put("/item/edit/:id", itemsController.editItem);
+inventoryRouter.post("/item/delete/:id", itemsController.deleteItem);
+inventoryRouter.post("/item/edit/:id", itemsController.editItem);
+inventoryRouter.get("/item/edit/:id", itemsController.editItemPage);
 {
   /* Categories */
 }
 inventoryRouter.get("/categories", categoriesController.getAllCategories);
 inventoryRouter.get("/category/search", categoriesController.getCategoryById);
 inventoryRouter.post("/newCategory", categoriesController.postNewcategory);
-inventoryRouter.delete("/category/delete/:id", categoriesController.deleteCategory,);
-inventoryRouter.put("/category/edit/:id", categoriesController.editCategory);
+inventoryRouter.post("/category/delete/:id", categoriesController.deleteCategory,);
+inventoryRouter.post("/category/edit/:id", categoriesController.editCategory);
 
 module.exports = { inventoryRouter };
