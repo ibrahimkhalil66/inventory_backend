@@ -2,11 +2,11 @@ const db = require("../db/queries");
 
 async function getAllCategories(req, res) {
   try {
-    const categories = await db.getAllCategories;
+    const categories = await db.getAllCategories();
 
     if (!categories) throw new Error();
 
-    res.render("main.ejs", { categories: categories });
+    res.render("categories.ejs", { categories: categories });
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }

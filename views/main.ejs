@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Inventory Items</title>
 </head>
 <body>
-    <table>
+    <form action="/inventory/item/search" method="get">
+        <input type="text" placeholder="item search" name="id">
+        <button type="submit">Search</button>
+    </form>
+    <form action="/inventory/items" method="get">
+        <button type="submit">Reset Items</button>
+    </form>
+    
+    <table border="1" id="items">
         <thead>
-            <tr>Id</tr>
-            <tr>Name</tr>
-            <tr>Description</tr>
-            <tr>Price</tr>
-            <tr>Stock Quantity</tr>
-            <tr>Category Id</tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock Quantity</th>
+                <th>Category Id</th>
+            </tr>
         </thead>
         <tbody>
             <% items.forEach((item) => { %>
-                
-        <% }); %>
+                <tr>
+                    <td> <%= item.id %></td>
+                    <td> <%= item.name %></td>
+                    <td> <%= item.description %></td>
+                    <td> <%= item.price %></td>
+                    <td> <%= item.stock_quantity %></td>
+                    <td> <%= item.category_id %></td>
+                </tr>
+            <% }); %>
         </tbody>
-        
     </table>
+    
 </body>
 </html>
+

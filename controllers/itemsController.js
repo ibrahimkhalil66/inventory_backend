@@ -2,7 +2,7 @@ const db = require("../db/queries");
 
 async function getAllItems(req, res) {
   try {
-    const items = await db.getAllItems;
+    const items = await db.getAllItems();
 
     if (!items) throw new Error();
 
@@ -14,18 +14,28 @@ async function getAllItems(req, res) {
 
 async function getItemById(req, res) {
   try {
-    const { id } = req.params;
+    const { id } = req.query;
+
+    if (!id) {
+      return res.render("main.ejs", { items: [] });
+    }
 
     const item = await db.getItemById(id);
 
-    if (!item) throw new Error();
+    if (!item) {
+      return res.render("main.ejs", { items: [] });
+    }
 
-    res.send(item);
+    res.render("main.ejs", { items: [item] });
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }
 }
 
+async function newItem(req,res) {
+
+  res.render("newItem.ejs")
+}
 async function postNewItem(req, res) {
   try {
     const { newItem } = req.body;
@@ -68,5 +78,11 @@ async function editItem(req, res) {
   }
 }
 
-
-module.exports = { getAllItems, getItemById, postNewItem, deleteItem, editItem}
+module.exports = {
+  getAllItems,
+  getItemById,
+  newItem,
+  postNewItem,
+  deleteItem,
+  editItem,
+};
