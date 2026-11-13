@@ -6,35 +6,35 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Inventory Items</title>
 </head>
-<body>
+<body class="p-10">
     <form action="/inventory/item/search" method="get">
-        <input type="text" placeholder="item search" name="id">
-        <button type="submit">Search</button>
+        <input class="border-1 px-2" type="text" placeholder="item search" name="id">
+        <button class="border-1 px-2" type="submit">Search</button>
     </form>
     <form action="/inventory/items" method="get">
         <button type="submit">Reset Items</button>
     </form>
     
-    <table border="1" id="items">
+    <table class="border-2" id="items">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Stock Quantity</th>
-                <th>Category Id</th>
+            <tr class="border-2">
+                <th class="px-1">Id</th>
+                <th class="px-1">Name</th>
+                <th class="px-1">Description</th>
+                <th class="px-1">Price</th>
+                <th class="px-1">Stock Quantity</th>
+                <th class="px-1">Category Id</th>
             </tr>
         </thead>
         <tbody>
             <% items.forEach((item) => { %>
-                <tr>
-                    <td> <%= item.id %></td>
-                    <td> <%= item.name %></td>
-                    <td> <%= item.description %></td>
-                    <td> <%= item.price %></td>
-                    <td> <%= item.stock_quantity %></td>
-                    <td> <%= item.category_id %></td>
+                <tr class="border-1">
+                    <td class="px-2"> <%= item.id %></td>
+                    <td class="px-2"> <%= item.name %></td>
+                    <td class="px-2"> <%= item.description %></td>
+                    <td class="px-2"> <%= item.price %></td>
+                    <td class="px-2"> <%= item.stock_quantity %></td>
+                    <td class="px-2"> <%= item.category_id %></td>
                 </tr>
             <% }); %>
         </tbody>
