@@ -155,6 +155,15 @@ async function editCategory(category) {
   return rows[0] || null;
 }
 
+async function getItemsCountByCategory(categoryId) {
+    const { rows } = await pool.query(
+        `SELECT COUNT(*) FROM items WHERE category_id = $1`, 
+        [categoryId]
+    );
+    // COUNT ترجع الرقم كنص، لذا نحوله إلى رقم صحيح
+    return parseInt(rows[0].count, 10);
+}
+
 module.exports = {
   getAllItems,
   getItemById,
@@ -166,4 +175,5 @@ module.exports = {
   postNewcategory,
   deleteCategory,
   editCategory,
+  getItemsCountByCategory
 };

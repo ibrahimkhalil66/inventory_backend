@@ -1,12 +1,21 @@
 const db = require("../db/queries");
 
+
+
 async function getAllCategories(req, res) {
   try {
     const categories = await db.getAllCategories();
 
     if (!categories) throw new Error();
 
-    res.render("categories.ejs", { categories: categories });
+    const categoriesWithCount = await Promise.all(
+            categories.map(async (category) => {
+                const count = await db.getItemsCountByCategory(category.id);
+                return { ...category, items_count: count }; 
+            })
+        );
+
+    res.render("categories.ejs", { categories: categoriesWithCount });
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }
@@ -19,6 +28,13 @@ async function getCategoryById(req, res) {
     const category = await db.getCategoryById(id);
 
     if (!category) throw new Error();
+
+    const categoriesWithCount = await Promise.all(
+            categories.map(async (category) => {
+                const count = await db.getItemsCountByCategory(category.id);
+                return { ...category, items_count: count }; 
+            })
+        );
 
     res.send(category);
   } catch (error) {
