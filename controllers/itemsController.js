@@ -1,5 +1,4 @@
 const db = require("../db/queries");
-
 async function getAllItems(req, res) {
   try {
     const items = await db.getAllItems();
@@ -32,19 +31,23 @@ async function getItemById(req, res) {
   }
 }
 
-async function newItem(req,res) {
-
-  res.render("newItem.ejs")
+async function newItem(req, res) {
+  try {
+    const categories = await db.getAllCategories();
+    res.render("newItem.ejs", { categories: categories });
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
 }
 async function postNewItem(req, res) {
   try {
-    const { newItem } = req.body;
+    const newItem = req.body;
 
     if (!newItem) throw new Error();
 
     const result = await db.postNewItem(newItem);
 
-    res.send(result);
+    res.redirect("/inventory/items")
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }

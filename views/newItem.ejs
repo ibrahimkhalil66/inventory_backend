@@ -11,22 +11,35 @@
     <form action="/inventory/newItem" method="post">
         <div class="">
             <label for="name">Item Name</label>
-            <input class="bg-gray-100" type="text" name="name" id="name">
+            <input class="bg-gray-100" type="text" name="name" id="name" required>
         </div>
+        
         <div class="">
-            <label for="name">Item Description</label>
-            <input class="bg-gray-100" type="text" name="name" id="name">
+            <label for="description">Item Description</label>
+            <textarea class="bg-gray-100" name="description" id="description" rows="4" cols="50"></textarea>
         </div>
+        
         <div class="">
-            <label for="name">Item Name</label>
-            <input class="bg-gray-100" type="text" name="name" id="name">
+            <label for="price">Item Price</label>
+            <input class="bg-gray-100" type="number" name="price" id="price" min="1" step="0.01" required>
         </div>
+        
         <div class="">
-            <label for="name">Item Name</label>
-            <input class="bg-gray-100" type="text" name="name" id="name">
+            <label for="stock_quantity">Item Stock Quantity</label>
+            <input class="bg-gray-100" type="number" name="stock_quantity" id="stock_quantity" min="1" max="100" value="1" required>
         </div>
+        
+        <div class="">
+            <label for="category_id">Item Category</label>
+            <select name="category_id" id="category_id" required>
+                <% categories.forEach((category) => { %>
+                    <option value="<%= category.id %>"> <%= category.name %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <button type="submit">Add new item</button>
     </form>
     
 </body>
 </html>
-
