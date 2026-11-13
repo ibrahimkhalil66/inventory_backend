@@ -12,7 +12,7 @@ inventoryRouter.get("/item/search", itemsController.getItemById);
 inventoryRouter.get("/newItem", itemsController.newItem);
 inventoryRouter.post("/newItem", itemsController.postNewItem);
 inventoryRouter.post("/item/delete/:id", itemsController.deleteItem);
-inventoryRouter.post("/item/edit/:id", itemsController.editItem);
+inventoryRouter.post("/item/edit", itemsController.editItem);
 inventoryRouter.get("/item/edit/:id", itemsController.editItemPage);
 {
   /* Categories */
