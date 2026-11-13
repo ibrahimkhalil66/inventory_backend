@@ -1,15 +1,21 @@
 const pool = require("./pool");
 
-{/* Items Queries */}
+{
+  /* Items Queries */
+}
 
-{/* return all items */}
+{
+  /* return all items */
+}
 async function getAllItems() {
   const { rows } = await pool.query("SELECT * FROM items");
 
   return rows;
 }
 
-{ /* return item by ID */}
+{
+  /* return item by ID */
+}
 async function getItemById(id) {
   const { rows } = await pool.query(
     `SELECT * FROM items
@@ -21,7 +27,9 @@ async function getItemById(id) {
   return rows[0] || null;
 }
 
-{/* Insert new item */}
+{
+  /* Insert new item */
+}
 async function postNewItem(item) {
   const { name, description, price, stock_quantity, category_id } = item;
   const { rows } = await pool.query(
@@ -34,7 +42,9 @@ async function postNewItem(item) {
   return rows[0];
 }
 
-{/* Delete item by ID */}
+{
+  /* Delete item by ID */
+}
 async function deleteItem(id) {
   const { rows } = await pool.query(
     `DELETE FROM items 
@@ -46,7 +56,9 @@ async function deleteItem(id) {
   return rows[0] || null;
 }
 
-{/* Edit item */}
+{
+  /* Edit item */
+}
 
 async function editItem(item) {
   const { id, name, description, price, stock_quantity, category_id } = item;
@@ -64,19 +76,25 @@ async function editItem(item) {
     [name, description, price, stock_quantity, category_id, id],
   );
 
-  return rows[0] || null
+  return rows[0] || null;
 }
 
-{/* Category Queries */}
+{
+  /* Category Queries */
+}
 
-{/* return all Categories */}
+{
+  /* return all Categories */
+}
 async function getAllCategories() {
   const { rows } = await pool.query("SELECT * FROM categories");
 
   return rows;
 }
 
-{/* return Category by ID */}
+{
+  /* return Category by ID */
+}
 async function getCategoryById(id) {
   const { rows } = await pool.query(
     `SELECT * FROM categories
@@ -88,9 +106,11 @@ async function getCategoryById(id) {
   return rows[0] || null;
 }
 
-{/* Insert new category */}
+{
+  /* Insert new category */
+}
 async function postNewcategory(category) {
-  const { name, description} = category;
+  const { name, description } = category;
   const { rows } = await pool.query(
     `INSERT INTO categories (name, description) 
          VALUES ($1, $2)
@@ -101,7 +121,9 @@ async function postNewcategory(category) {
   return rows[0];
 }
 
-{/* Delete Category by ID */}
+{
+  /* Delete Category by ID */
+}
 async function deleteCategory(id) {
   const { rows } = await pool.query(
     `DELETE FROM categories 
@@ -113,7 +135,9 @@ async function deleteCategory(id) {
   return rows[0] || null;
 }
 
-{/* Edit Category */}
+{
+  /* Edit Category */
+}
 
 async function editCategory(category) {
   const { id, name, description } = category;
@@ -128,8 +152,18 @@ async function editCategory(category) {
     [name, description, id],
   );
 
-  return rows[0] || null
+  return rows[0] || null;
 }
 
-
-module.exports = { getAllItems , getItemById , postNewItem , deleteItem, editItem, getAllCategories, getCategoryById , postNewcategory, deleteCategory, editCategory}
+module.exports = {
+  getAllItems,
+  getItemById,
+  postNewItem,
+  deleteItem,
+  editItem,
+  getAllCategories,
+  getCategoryById,
+  postNewcategory,
+  deleteCategory,
+  editCategory,
+};
