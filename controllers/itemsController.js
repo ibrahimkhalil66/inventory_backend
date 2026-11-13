@@ -2,10 +2,10 @@ const db = require("../db/queries");
 async function getAllItems(req, res) {
   try {
     const items = await db.getAllItems();
-
+    const categories = await db.getAllCategories()
     if (!items) throw new Error();
 
-    res.render("main.ejs", { items: items });
+    res.render("main.ejs", { items: items, categories: categories});
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }
@@ -20,12 +20,13 @@ async function getItemById(req, res) {
     }
 
     const item = await db.getItemById(id);
+    const categories = await db.getAllCategories()
 
     if (!item) {
       return res.render("main.ejs", { items: [] });
     }
 
-    res.render("main.ejs", { items: [item] });
+    res.render("main.ejs", { items: [item], categories});
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }

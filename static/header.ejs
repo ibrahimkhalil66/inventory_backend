@@ -1,0 +1,33 @@
+<header class="bg-indigo-600 text-white shadow-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            
+            <!-- Logo / Brand -->
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                <a href="/inventory/items" class="font-bold text-lg tracking-wide">
+                    Inventory Backend
+                </a>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="flex items-center space-x-1 sm:space-x-4">
+                <a href="/inventory/items" class="hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                    Items
+                </a>
+                
+                <!-- Adjust this route to match your actual categories route -->
+                <a href="/inventory/categories" class="hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                    Categories
+                </a>
+                
+                <a href="/inventory/newItem" class="bg-indigo-500 hover:bg-indigo-400 px-4 py-2 rounded-md text-sm font-medium transition-colors border border-indigo-400 ml-2 shadow-sm">
+                    + Add Item
+                </a>
+            </nav>
+            
+        </div>
+    </div>
+</header>
