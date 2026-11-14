@@ -70,7 +70,7 @@ async function deleteItem(req, res) {
 
 async function editItemPage(req,res) {
   const { id } = req.params
-
+  
   const item = await db.getItemById(id); 
   const categories = await db.getAllCategories();
    res.render("edit.ejs", {item, categories });
@@ -79,11 +79,9 @@ async function editItemPage(req,res) {
 async function editItem(req, res) {
   try {
     const item  = req.body;
-
     if (!item) throw new Error();
 
-    await db.editItem(item);
-
+    const result = await db.editItem(item);
     res.redirect("/inventory/items");
   } catch (error) {
     res.status(500).send("Internal Server Error");

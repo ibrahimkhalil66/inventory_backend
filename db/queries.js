@@ -62,7 +62,6 @@ async function deleteItem(id) {
 
 async function editItem(item) {
   const { id, name, description, price, stock_quantity, category_id } = item;
-
   const { rows } = await pool.query(
     `UPDATE items 
         SET name = COALESCE($1, name),
@@ -75,6 +74,8 @@ async function editItem(item) {
         RETURNING *`,
     [name, description, price, stock_quantity, category_id, id],
   );
+
+  
 
   return rows[0] || null;
 }
