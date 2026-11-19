@@ -93,8 +93,9 @@ async function editItemPage(req,res) {
 
 async function editItem(req, res) {
   try {
-    const item  = req.body;
-    
+    const { id } = req.params;
+    const item  = {id ,...req.body};
+
 
     if (!item) throw new Error();
     const items = await db.getAllItems();
