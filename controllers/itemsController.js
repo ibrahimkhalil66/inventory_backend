@@ -40,16 +40,31 @@ async function newItem(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
+
 async function postNewItem(req, res) {
   try {
     const newItem = req.body;
 
-    if (!newItem) throw new Error();
+    if(!newItem) throw new Error;
+
+    const items = await db.getAllItems();
+    const isExists = items.some(
+      (i) => i.name.trim().toLowerCase() === newItem.name.trim().toLowerCase()
+    );
+
+    if (isExists) {
+      const categories = await db.getAllCategories();
+      return res.render("newItem.ejs", {
+        categories,
+        isExists: true,
+        error: `The item "${newItem.name}" already exists.`,
+      });
+    }
 
     const result = await db.postNewItem(newItem);
-
-    res.redirect("/inventory/items")
+    res.redirect("/inventory/items");
   } catch (error) {
+    console.error(error);
     res.status(500).send("Internal Server Error");
   }
 }
@@ -79,7 +94,26 @@ async function editItemPage(req,res) {
 async function editItem(req, res) {
   try {
     const item  = req.body;
+    
+
     if (!item) throw new Error();
+    const items = await db.getAllItems();
+    const isExists = items.some(
+      (i) =>
+        i.id !== Number(item.id) &&
+        i.name.trim().toLowerCase() === item.name.trim().toLowerCase()
+    );
+
+    if (isExists) {
+      const categories = await db.getAllCategories();
+      const originalItem = await db.getItemById(item.id);
+      return res.render("edit.ejs", {
+        item: originalItem ,
+        categories,
+        isExists: true,
+        error: `The item "${item.name}" already exists.`,
+      });
+    }
 
     const result = await db.editItem(item);
     res.redirect("/inventory/items");

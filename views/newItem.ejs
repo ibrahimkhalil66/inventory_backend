@@ -49,6 +49,11 @@
                     <% }); %>
                 </select>
             </div>
+            <% if (typeof isExists !== 'undefined' && isExists) { %>
+                <div class="p-3.5 rounded-lg bg-red-50 border border-red-200 text-sm text-red-600 font-medium">
+                    <%= error %>
+                </div>
+            <% } %>
 
             <div class="pt-4 mt-6 border-t border-gray-100 flex items-center justify-between gap-4">
                 <a href="/inventory/items" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Cancel</a>
