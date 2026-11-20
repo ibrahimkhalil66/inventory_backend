@@ -16,9 +16,7 @@
             <h1 class="text-3xl font-bold text-gray-900">Categories</h1>
             <p class="text-sm text-gray-500 mt-1">Manage and view your inventory categories.</p>
         </div>
-        
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col sm:flex-row gap-4 justify-between items-center mb-6 mt-6">
+         <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col sm:flex-row gap-4 justify-between items-center mb-6 mt-6">
             <form action="/inventory/category/search" method="get" class="flex w-full sm:w-auto gap-2">
                 <div class="relative w-full sm:w-80">
                     <input class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow text-sm" type="text" placeholder="Search category by ID..." name="id" required>
@@ -37,6 +35,8 @@
                 </button>
             </form>
         </div>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+           
         <% if (typeof error !== 'undefined' && error) { %>
             <div class="mb-6 p-4 rounded-lg bg-red-50 border border-red-200 text-sm text-red-600 font-medium">
                 <%= error %>
