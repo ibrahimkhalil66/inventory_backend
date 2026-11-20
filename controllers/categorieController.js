@@ -27,13 +27,13 @@ async function getCategoryById(req, res) {
       }
 
       const category = await db.getCategoryById(id);
-
-      category.items_count = await db.getItemsCountByCategory(id);
-
+      
       if (!category) {
         return res.render("categories.ejs", { categories: [] });
       }
   
+      category.items_count = await db.getItemsCountByCategory(id);
+
       res.render("categories.ejs", { categories: [category]});
     } catch (error) {
       res.status(500).send("Internal Server Error");
