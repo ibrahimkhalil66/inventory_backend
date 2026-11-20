@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+
 async function getAllItems(req, res) {
   try {
     const items = await db.getAllItems();
@@ -88,7 +89,7 @@ async function editItemPage(req,res) {
   
   const item = await db.getItemById(id); 
   const categories = await db.getAllCategories();
-   res.render("edit.ejs", {item, categories });
+   res.render("editItem.ejs", {item, categories });
 }
 
 async function editItem(req, res) {
@@ -108,7 +109,7 @@ async function editItem(req, res) {
     if (isExists) {
       const categories = await db.getAllCategories();
       const originalItem = await db.getItemById(item.id);
-      return res.render("edit.ejs", {
+      return res.render("editItem.ejs", {
         item: originalItem ,
         categories,
         isExists: true,

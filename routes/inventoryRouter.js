@@ -20,7 +20,9 @@ inventoryRouter.get("/item/edit/:id", itemsController.editItemPage);
 inventoryRouter.get("/categories", categoriesController.getAllCategories);
 inventoryRouter.get("/category/search", categoriesController.getCategoryById);
 inventoryRouter.post("/newCategory", categoriesController.postNewcategory);
+inventoryRouter.get("/newCategory", categoriesController.NewcategoryPage);
 inventoryRouter.post("/category/delete/:id", categoriesController.deleteCategory,);
 inventoryRouter.post("/category/edit/:id", categoriesController.editCategory);
+inventoryRouter.get("/category/edit/:id", categoriesController.editCategoryPage);
 
 module.exports = { inventoryRouter };

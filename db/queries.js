@@ -146,7 +146,7 @@ async function editCategory(category) {
   const { rows } = await pool.query(
     `UPDATE categories 
         SET name = COALESCE($1, name),
-        description = COALESCE($2, description),
+        description = COALESCE($2, description)
         
         WHERE id = $3
         RETURNING *`,
@@ -161,7 +161,6 @@ async function getItemsCountByCategory(categoryId) {
         `SELECT COUNT(*) FROM items WHERE category_id = $1`, 
         [categoryId]
     );
-    // COUNT ترجع الرقم كنص، لذا نحوله إلى رقم صحيح
     return parseInt(rows[0].count, 10);
 }
 
